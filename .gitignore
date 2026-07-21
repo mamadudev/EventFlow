@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+
+# environment
+.env
+
+# vscode
+.vscode/
+
+# logs
+*.log
+
+# cache
+.cache/
