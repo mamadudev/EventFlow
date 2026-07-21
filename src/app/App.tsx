@@ -309,6 +309,44 @@ const HowItWorks = () => {
 };
 
 const RegistrationForm = () => {
+  const [cep, setCep] = useState("");
+
+  const [address, setAddress] = useState({
+    rua: "",
+    bairro: "",
+    cidade: "",
+    estado: "",
+  });
+
+  const buscarCep = async () => {
+    if (cep.length !== 8) {
+      alert("Digite um CEP válido (8 números).");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://viacep.com.br/ws/${cep}/json/`
+      );
+
+      const data = await response.json();
+
+      if (data.erro) {
+        alert("CEP não encontrado.");
+        return;
+      }
+
+      setAddress({
+        rua: data.logradouro,
+        bairro: data.bairro,
+        cidade: data.localidade,
+        estado: data.uf,
+      });
+    } catch (error) {
+      alert("Erro ao buscar o CEP.");
+    }
+  };
+
   return (
     <section id="inscricao" className="py-20 bg-slate-800 text-white relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -342,43 +380,53 @@ const RegistrationForm = () => {
               </div>
               <div className="space-y-2">
                 <label htmlFor="cep" className="block text-sm font-medium text-slate-700">CEP</label>
-                <input type="text" id="cep" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="00000-000" />
+                <input 
+                  type="text"
+                  id="cep"
+                  value={cep}
+                  onChange={(e)=>setCep(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="00000-000" 
+                  />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2"></div>
                 <label htmlFor="cep" className="block text-sm font-medium text-slate-700">consulta o CEP</label>
-                <button type="button" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors"></button>
-                  <span>Consultar</span>
+                <button 
+                  type="button"
+                  onClick={buscarCep}
+                  className="space-y-2 px-4 py-3 rounded-xl bg-blue-600 text-white"
+                  >
+                  Consultar
+                </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="street" className="block text-sm font-medium text-slate-700">Rua/Avenida</label>
-                <input type="text" id="street" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="Rua das Tecnologias" />
+                <input type="text" id="street" value={address.rua} readOnly className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="Rua das Tecnologias" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="neighborhood" className="block text-sm font-medium text-slate-700">Bairro</label>
-                <input type="text" id="neighborhood" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="Vila Tech" />
+                <input type="text" id="neighborhood" value={address.bairro} readOnly className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="Vila Tech" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label htmlFor="city" className="block text-sm font-medium text-slate-700">Cidade</label>
-                <input type="text" id="city" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="São Paulo" />
+                <input type="text" id="city" value={address.cidade} readOnly className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="São Paulo" />
               </div>
               <div className="space-y-2">
                 <label htmlFor="state" className="block text-sm font-medium text-slate-700">Estado</label>
-                <select id="state" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors">
-                  <option value="">Selecione...</option>
-                  <option value="SP">São Paulo</option>
-                  <option value="RJ">Rio de Janeiro</option>
-                  <option value="MG">Minas Gerais</option>
-                  <option value="RS">Rio Grande do Sul</option>
-                  {/* Outros estados */}
-                </select>
+                <input
+                  type="text"
+                  id="state"
+                  value={address.estado}
+                  readOnly
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50"
+                />
               </div>
             </div>
 
@@ -395,7 +443,6 @@ const RegistrationForm = () => {
     </section>
   );
 };
-
 const Footer = () => {
   return (
     <footer id="contato" className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800">
