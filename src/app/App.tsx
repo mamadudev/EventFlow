@@ -44,7 +44,8 @@ const Header = () => {
 
           <div className="hidden md:flex items-center">
             <a href="#inscricao" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-sm hover:shadow-md flex items-center gap-2">
-              Criar Evento
+              Inscreva-se
+              <ArrowRight className="h-4 w-4" />
             </a>
           </div>
 
@@ -80,10 +81,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-blue-600"></span>
-              A plataforma #1 de eventos de tecnologia
-            </div>
+            
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-800 leading-tight mb-6">
               Conectando pessoas, conhecimento e oportunidades.
             </h1>
@@ -96,7 +94,7 @@ const Hero = () => {
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a href="#inscricao" className="inline-flex justify-center items-center gap-2 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 px-8 py-3.5 rounded-full font-semibold transition-all shadow-sm hover:shadow text-lg">
-                INSCREVA-SE
+                Inscreva-se
                 <ArrowRight className="h-5 w-5" />
               </a>
             </div>
@@ -106,27 +104,15 @@ const Hero = () => {
             <img 
               src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwY29uZmVyZW5jZSUyMGNyb3dkfGVufDF8fHx8MTc4MzQ2OTU3Mnww&ixlib=rb-4.1.0&q=80&w=1080" 
               alt="Pessoas em uma conferência de tecnologia" 
-              className="rounded-[2rem] shadow-2xl w-full object-cover h-[400px] lg:h-[500px]"
-            />
-            
-            {/* Floating badge */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce-slow">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Users className="h-6 w-6 text-green-600" />
-              </div>
-              <div>
-                <p className="text-sm text-slate-500 font-medium">Comunidade ativa</p>
-                <p className="text-lg font-bold text-slate-800">+50k Devs</p>
+              className="rounded-[2rem] shadow-2xl w-full object-cover h-[400px] lg:h-[400px]"
+              />
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </section>
   );
 };
-
-const SearchBar = () => {
+/*const SearchBar = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
       <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 border border-slate-100">
@@ -161,8 +147,7 @@ const SearchBar = () => {
       </div>
     </div>
   );
-};
-
+};*/
 const FeaturedEvents = () => {
   const events = [
     {
@@ -345,7 +330,7 @@ const RegistrationForm = () => {
                 <input type="text" id="name" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="João da Silva" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700">E-mail corporativo</label>
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700">E-mail</label>
                 <input type="email" id="email" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="joao@empresa.com" />
               </div>
             </div>
@@ -359,6 +344,13 @@ const RegistrationForm = () => {
                 <label htmlFor="cep" className="block text-sm font-medium text-slate-700">CEP</label>
                 <input type="text" id="cep" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors" placeholder="00000-000" />
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2"></div>
+                <label htmlFor="cep" className="block text-sm font-medium text-slate-700">consulta o CEP</label>
+                <button type="button" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 transition-colors"></button>
+                  <span>Consultar</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -384,6 +376,7 @@ const RegistrationForm = () => {
                   <option value="SP">São Paulo</option>
                   <option value="RJ">Rio de Janeiro</option>
                   <option value="MG">Minas Gerais</option>
+                  <option value="RS">Rio Grande do Sul</option>
                   {/* Outros estados */}
                 </select>
               </div>
@@ -413,10 +406,10 @@ const Footer = () => {
               <div className="bg-blue-600 p-2 rounded-lg">
                 <Ticket className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-white tracking-tight">Event<span className="text-blue-500">Connect</span></span>
+              <span className="font-bold text-xl text-white tracking-tight">Event<span className="text-blue-500">Flow</span></span>
             </a>
             <p className="text-sm text-slate-400 mb-6 leading-relaxed">
-              A maior e mais inovadora plataforma de eventos de tecnologia do Brasil. Conectando pessoas e conhecimento.
+              A maior e mais inovadora plataforma de eventos de tecnologia do Brasil, conectando pessoas e conhecimento.
             </p>
           </div>
           
@@ -426,7 +419,7 @@ const Footer = () => {
               <li><a href="#" className="hover:text-blue-400 transition-colors">Início</a></li>
               <li><a href="#eventos" className="hover:text-blue-400 transition-colors">Eventos</a></li>
               <li><a href="#categorias" className="hover:text-blue-400 transition-colors">Categorias</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Criar Evento</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Inscreva-se</a></li>
             </ul>
           </div>
 
@@ -452,7 +445,7 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} EventConnect. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} EventFlow. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-slate-500 hover:text-white transition-colors">
@@ -486,7 +479,6 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <SearchBar />
         <FeaturedEvents />
         <Categories />
         <HowItWorks />
