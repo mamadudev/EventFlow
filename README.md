@@ -10,7 +10,7 @@ Além disso, o projeto conta com integração com a API ViaCEP para preenchiment
 
 ## Demonstração
 
-- Deploy: https://SEU-LINK-DO-VERCEL.vercel.app
+- Deploy: https://event-flow-fawn-six.vercel.app/
 - Repositório: https://github.com/mamadudev/EventFlow
 
 ---
